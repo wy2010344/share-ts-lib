@@ -1,0 +1,20 @@
+on:
+  push:
+    branches: [main, dev, test]
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://npm.pkg.github.com'
+      - run: yarn
+      - run: yarn pack #打包成share-lib.tgz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: share-ts-lib-${{ github.ref_name }}
+          path: '*.tgz'
+          #retention-days: 1 #24小时后自动删除，这里可能不需要
