@@ -12,7 +12,8 @@ jobs:
           node-version: 20
           registry-url: 'https://npm.pkg.github.com'
       - run: yarn
-      - run: yarn pack #打包成share-lib.tgz
+      - run: yarn pack --filename share-ts-lib.tgz #for yarn 1
+      #- run: yarn pack --out share-ts-lib.tgz #for yarn > 2
 
       - name: upload to release
         uses: softprops/action-gh-release@v2
