@@ -13,8 +13,11 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
       - run: yarn
       - run: yarn pack #打包成share-lib.tgz
-      - uses: actions/upload-artifact@v4
+
+      - name: upload to release
+        uses: softprops/action-gh-release@v2
         with:
-          name: share-ts-lib-${{ github.ref_name }}
-          path: '*.tgz'
-          #retention-days: 1 #24小时后自动删除，这里可能不需要
+          tag_name: ${{ github.ref_name }}
+          files: '*.tgz'
+          name: ${{ github.ref_name }}
+          fail_on_unmatched_files: true
