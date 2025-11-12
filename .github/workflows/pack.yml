@@ -21,3 +21,5 @@ jobs:
           files: '*.tgz'
           name: ${{ github.ref_name }}
           fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
