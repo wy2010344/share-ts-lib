@@ -1,5 +1,5 @@
 export function add(n: number) {
-  return n * 8 + 'dev,,,,'
+  return n * 8 + 'test,,,,'
 }
 
 
